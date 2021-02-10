@@ -52,18 +52,30 @@ public class BankAccount {
         return withdrawAmount;
     }
 
-    public void setWithdrawMoney(int withdrawAmount) {
+    public String setWithdrawMoney(int withdrawAmount) {
+        String status="";
         this.withdrawAmount = withdrawAmount;
+        if(accountBalance>=withdrawAmount){
         accountBalance = accountBalance - withdrawAmount;
+            status="Successful";
+        }
+        else {
+            status="InsufficientFunds";
+        }
+        return status;
     }
 
     public int getDepositMoney() {
         return depositAmount;
     }
 
-    public void setDepositMoney(int depositAmount) {
-        this.depositAmount = depositAmount;
-        accountBalance = accountBalance + depositAmount;
+    public String setDepositMoney(int depositAmount) {
+        String status="Successful deposit";
+        if(depositAmount>0){this.depositAmount = depositAmount;
+        accountBalance = accountBalance + depositAmount;}
+        else {status="Invalid amount";
+        }
+        return status;
     }
 
 

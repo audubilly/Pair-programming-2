@@ -1,9 +1,16 @@
 package BankingApplication;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 public class Bank implements Transactions {
 
     private Customer[] customers = new Customer[10];
-    private BankAccount [] bankAccounts = new BankAccount[10];
+    private final  BankAccount bankAccountNotFound = new BankAccount();
+    ArrayList<BankAccount> bankAccounts = new ArrayList<BankAccount>();
+
 
     public Bank() {
     }
@@ -18,14 +25,28 @@ public class Bank implements Transactions {
 
     public void setCustomers(Customer customer,BankAccount bankAccount ) {
         for (int counter = 0; counter < customers.length; counter++) {
-            if (customers[counter] == null && bankAccounts[counter] == null) {
+            if (customers[counter] == null) {
                 customers[counter] = customer;
-                bankAccounts[counter] = bankAccount;
+                bankAccounts.add(bankAccount);
                 break;
             }
         }
     }
 
+    public String getCustomerDetails(String accountType, String accountNumber){
+        String status = "customer not found";
+       BankAccount bankAccount = bankAccounts.stream()
+               .filter(accountProfile ->accountNumber.equals(accountProfile.getAccountNumber()))
+               .findFirst().orElse(bankAccountNotFound) ;
+
+       int counter = bankAccounts.indexOf(bankAccount);
+       if(counter >= 0){
+           status = customers[counter].toString() + bankAccount.toString();
+       }
+       return status;
+
+
+    }
 
     @Override
     public String depositMoney(BankAccount bankAccount, int amount) {
@@ -37,6 +58,7 @@ public class Bank implements Transactions {
 
     @Override
     public String transferMoney(BankAccount bankAccount, BankAccount bankAccount2, int amount) {
+
         String status = "Transfer successful";
 
         status = bankAccount.setWithdrawMoney(amount);

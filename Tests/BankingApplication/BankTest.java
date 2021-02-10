@@ -54,19 +54,22 @@ class BankTest {
         bankAccount = new BankAccount(1,1000);
         bank.setCustomers(customer, bankAccount);
 
-        Customer customer2 = new Customer("bil","aud","adams","semicolon,Yaba",
-                "billyaudu@gmail.com","09056790444" );
-     BankAccount   bankAccount2 = new BankAccount(1,1000);
-       bank.setCustomers(customer2, bankAccount2);
+//        Customer customer2 = new Customer("bil","aud","adams","semicolon,Yaba",
+//                "billyaudu@gmail.com","09056790444" );
+//     BankAccount   bankAccount2 = new BankAccount(1,1000);
+//       bank.setCustomers(customer2, bankAccount2);
 
 //        System.out.println(bank.withdrawMoney(bankAccount,1000));
 //        assertEquals(0, bankAccount.getBalance());
 //        System.out.println( bankAccount.toString());
 
 
-        System.out.println(bank.depositMoney(bankAccount2,-400));
-        assertEquals(1000, bankAccount2.getBalance());
-        System.out.println(bankAccount2.toString());
+//        System.out.println(bank.depositMoney(bankAccount2,-400));
+//        assertEquals(1000, bankAccount2.getBalance());
+//        System.out.println(bankAccount2.toString());
+
+        bank.getCustomerDetails("Savings", "101003");
+//        System.out.println(bankAccount.toString());
 //
 //        System.out.println(bank.transferMoney(bankAccount2,bankAccount,200));
 //        assertEquals(1200, bankAccount.getBalance());

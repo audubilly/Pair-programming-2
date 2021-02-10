@@ -24,11 +24,18 @@ public class BankAccount {
         this.accountNumber = generateAccountNumber();
     }
 
+    public BankAccount(int accountTypes, String accountNumber) {
+
+
+    }
+
     public BankAccount(int accountTypes,int depositAmount) {
         setAccountTypes(accountTypes);
         this.accountNumber = generateAccountNumber();
         this.accountBalance = depositAmount;
     }
+
+
 
     private String generateAccountNumber() {
         String accountNumber = null;

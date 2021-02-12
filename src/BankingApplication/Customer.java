@@ -1,5 +1,6 @@
 package BankingApplication;
 
+
 public class Customer {
     private String firstName;
     private String lastName;
@@ -10,7 +11,6 @@ public class Customer {
 
     public Customer() {
     }
-
     public Customer(String firstName, String lastName, String otherNames, String address, String email, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;

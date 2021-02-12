@@ -29,30 +29,30 @@ class BankAccountTest {
 
         assertEquals(0,bankAccount.getBalance());
 
-        bankAccount.setAccountTypes(1);
-        assertEquals("Savings", bankAccount.getAccountTypes());
+        bankAccount.setAccountTypes("Savings");
+        assertEquals(AccountTypes.SAVINGS, bankAccount.getAccountTypes());
 
     }
     @Test
     void testThatToStringMethodWorks(){
-        bankAccount.setAccountTypes(2);
+        bankAccount.setAccountTypes("Current");
         bankAccount.setDepositMoney(200);
         System.out.println(bankAccount.toString());
     }
 
     @Test
     void testThatBnkAccountTypesCanBeGotten(){
-       BankAccount bankAccount1 = new BankAccount(1);
-       assertEquals("Savings", bankAccount1.getAccountTypes());
-        System.out.println(bankAccount1.getAccountNumber());
+       BankAccount bankAccount1 = new BankAccount("Savings");
+       assertEquals(AccountTypes.SAVINGS, bankAccount1.getAccountTypes());
+        System.out.println(bankAccount1.getAccountId());
 
 
-        BankAccount bankAccount2 = new BankAccount(2);
+        BankAccount bankAccount2 = new BankAccount("Current");
         assertEquals("Current", bankAccount2.getAccountTypes());
-        System.out.println(bankAccount2.getAccountNumber());
+        System.out.println(bankAccount2.getAccountId());
 
 
-        BankAccount bankAccount3 = new BankAccount(2, 1000);
+        BankAccount bankAccount3 = new BankAccount("Current", 1000);
         assertEquals("Current", bankAccount3.getAccountTypes());
         System.out.println(bankAccount3.toString());
 

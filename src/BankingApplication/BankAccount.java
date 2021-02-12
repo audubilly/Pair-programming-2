@@ -1,51 +1,45 @@
 package BankingApplication;
 
 import java.security.SecureRandom;
+import java.util.UUID;
 
 public class BankAccount {
     private int withdrawAmount;
     private int depositAmount;
-    private String accountTypes;
-    private String accountNumber;
+    private Enum accountTypes;
+    private UUID accountId;
     private int accountBalance;
 
-
-    SecureRandom random = new SecureRandom();
 
     public BankAccount() {
     }
 
-    public String getAccountNumber() {
-        return accountNumber;
+    public UUID getAccountId() {
+        return accountId;
     }
 
-    public BankAccount(int accountTypes) {
+    public BankAccount(String accountTypes) {
         setAccountTypes(accountTypes);
-        this.accountNumber = generateAccountNumber();
+        this.accountId = generateAccountNumber();
     }
 
-    public BankAccount(int accountTypes,int depositAmount) {
+    public BankAccount(String accountTypes,int depositAmount) {
         setAccountTypes(accountTypes);
-        this.accountNumber = generateAccountNumber();
+        this.accountId = generateAccountNumber();
         this.accountBalance = depositAmount;
     }
 
-    private String generateAccountNumber() {
-        String accountNumber = null;
-        if (accountTypes.equals("Savings")) {
-            accountNumber = "1010" + forSavings();
+    private UUID generateAccountNumber() {
+        UUID accountNumber = null;
+        if (accountTypes == AccountTypes.SAVINGS) {
+            accountNumber = UUID.randomUUID();
         }
-        if (accountTypes.equals("Current")){
-            accountNumber = "2020" + forSavings();
+        if (accountTypes == AccountTypes.CURRENT){
+            accountNumber = UUID.randomUUID();
+
     }
         return accountNumber;
 }
-    private String forSavings() {
-        String savingsAccountNumber = null;
-        savingsAccountNumber = String.valueOf(random.nextInt(3));
-        savingsAccountNumber += String.valueOf(random.nextInt(5));
-        return savingsAccountNumber;
-    }
 
 
     public int getWithdrawMoney() {
@@ -60,7 +54,7 @@ public class BankAccount {
             status="Successful";
         }
         else {
-            status="InsufficientFunds";
+            status="Insufficient Funds";
         }
         return status;
     }
@@ -83,22 +77,26 @@ public class BankAccount {
         return accountBalance;
     }
 
-    public void setAccountTypes(int accountTypes) {
+    public void setAccountTypes(String accountTypes) {
+        accountTypes = accountTypes.toLowerCase();
         switch (accountTypes){
-            case 1 -> this.accountTypes = "Savings";
-            case 2 -> this.accountTypes = "Current";
+            case "savings" -> {this.accountTypes=AccountTypes.SAVINGS;
+            this.accountId = generateAccountNumber();}
+            case "current" -> {this.accountTypes =AccountTypes.CURRENT;
+            this.accountId = generateAccountNumber();}
         }
-        this.accountNumber = generateAccountNumber();
+
 
     }
 
-    public String getAccountTypes() {
+    public Enum getAccountTypes() {
         return accountTypes;
     }
 
     @Override
     public String toString() {
-        return String.format("%nYour account balance is %d%nAnd your account type is a %s account%nthe account Number is %s%n }", getBalance(),getAccountTypes(), getAccountNumber());
+        return String.format("%nYour account balance is %d%nAnd your account type is a %s account%nthe accountId is %s%s%n }"
+                , getBalance(),getAccountTypes(),(accountTypes==AccountTypes.SAVINGS?"SA-":"CU-"), getAccountId());
     }
 }
 

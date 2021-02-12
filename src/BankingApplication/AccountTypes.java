@@ -1,5 +1,6 @@
 package BankingApplication;
 
 public enum AccountTypes {
-    SAVINGS , CURRENT
+    SAVINGS,
+    CURRENT
 }

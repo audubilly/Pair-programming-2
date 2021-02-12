@@ -1,6 +1,6 @@
 package BankingApplication;
 
-import java.security.SecureRandom;
+
 import java.util.UUID;
 
 public class BankAccount {
@@ -9,6 +9,8 @@ public class BankAccount {
     private Enum accountTypes;
     private UUID accountId;
     private int accountBalance;
+
+
 
 
     public BankAccount() {
@@ -23,6 +25,10 @@ public class BankAccount {
         this.accountId = generateAccountNumber();
     }
 
+    public BankAccount(String accountTypes,String accountId) {
+
+    }
+
     public BankAccount(String accountTypes,int depositAmount) {
         setAccountTypes(accountTypes);
         this.accountId = generateAccountNumber();
@@ -31,16 +37,15 @@ public class BankAccount {
 
     private UUID generateAccountNumber() {
         UUID accountNumber = null;
-        if (accountTypes == AccountTypes.SAVINGS) {
-            accountNumber = UUID.randomUUID();
-        }
-        if (accountTypes == AccountTypes.CURRENT){
-            accountNumber = UUID.randomUUID();
+        if (accountTypes==AccountTypes.SAVINGS) {
+            accountNumber =  UUID.randomUUID();
 
+        }
+        if (accountTypes==AccountTypes.CURRENT){
+            accountNumber = UUID.randomUUID();
     }
         return accountNumber;
 }
-
 
     public int getWithdrawMoney() {
         return withdrawAmount;
@@ -78,12 +83,14 @@ public class BankAccount {
     }
 
     public void setAccountTypes(String accountTypes) {
-        accountTypes = accountTypes.toLowerCase();
+       accountTypes = accountTypes.toLowerCase();
         switch (accountTypes){
-            case "savings" -> {this.accountTypes=AccountTypes.SAVINGS;
-            this.accountId = generateAccountNumber();}
-            case "current" -> {this.accountTypes =AccountTypes.CURRENT;
-            this.accountId = generateAccountNumber();}
+            case  "savings" -> {this.accountTypes=AccountTypes.SAVINGS;
+                                 this.accountId = generateAccountNumber();
+            }
+            case "current" ->{this.accountTypes=AccountTypes.CURRENT;
+                this.accountId = generateAccountNumber();
+            }
         }
 
 
@@ -95,8 +102,8 @@ public class BankAccount {
 
     @Override
     public String toString() {
-        return String.format("%nYour account balance is %d%nAnd your account type is a %s account%nthe accountId is %s%s%n }"
-                , getBalance(),getAccountTypes(),(accountTypes==AccountTypes.SAVINGS?"SA-":"CU-"), getAccountId());
+        return String.format("%nYour account balance is %d%nAnd your account type is a %s account%nThe account Id is %s%s%n }",
+                getBalance(),getAccountTypes(),(accountTypes==AccountTypes.SAVINGS?"SA-":"CU-"), getAccountId());
     }
 }
 

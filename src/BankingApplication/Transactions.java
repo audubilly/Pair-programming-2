@@ -1,7 +1,8 @@
 package BankingApplication;
 
 public interface Transactions {
-    String depositMoney(BankAccount bankAccount,int amount);
-    String transfer(BankAccount bankAccount,BankAccount bankAccount2,int amount);
-    String withdrawal(BankAccount bankAccount,int amount);
+    String depositMoney(String accountID,int amount);
+    String transfer(String accountIDFrom, String accountIDTo,int amount, String password);
+    String withdrawal( String accountID,int amount, String password);
+
 }

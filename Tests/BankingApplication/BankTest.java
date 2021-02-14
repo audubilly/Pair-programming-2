@@ -109,7 +109,7 @@ class BankTest {
                 "billyaudu@gmail.com","09056790444" );
         bankAccount = new BankAccount("Savings",1000);
         bank.registerCustomers(billy,bankAccount);
-        bank.setCustomerPassword(bankAccount.getAccountId().toString(),"12345");
+        bank.setCustomerPassword(bankAccount.getAccountId().toString(),"1234");
 
 
         Customer titi = new Customer("Titi4","titus","agba-agba","semi-colon","titi@semi-colon","1234");
@@ -121,11 +121,11 @@ class BankTest {
         assertEquals(3000,bankAccount.getBalance());
 
 
-        System.out.println( bank.withdrawal(bankAccount.getAccountId().toString(),200,"12345"));
+        System.out.println( bank.withdrawal(bankAccount.getAccountId().toString(),200,"1234"));
         assertEquals(2800,bankAccount.getBalance());
 
 
-        System.out.println( bank.transfer(bankAccount.getAccountId().toString(),bankAccount2.getAccountId().toString(),800,"12345"));
+        System.out.println( bank.transfer(bankAccount.getAccountId().toString(),bankAccount2.getAccountId().toString(),800,"1234"));
         assertEquals(2000,bankAccount.getBalance());
 
 

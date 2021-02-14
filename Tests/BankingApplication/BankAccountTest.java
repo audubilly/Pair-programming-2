@@ -35,7 +35,8 @@ class BankAccountTest {
         bankAccount3.getAccountTypes();
         System.out.println(bankAccount.toString());
 
-
+        bankAccount.setWithdrawMoney(1000);
+        assertEquals(1000, bankAccount.getWithdrawMoney());
         bankAccount.setWithdrawMoney(100);
         assertEquals(100, bankAccount.getWithdrawMoney());
 
@@ -49,6 +50,7 @@ class BankAccountTest {
     void testThatToStringMethodWorks(){
         bankAccount.setAccountTypes("Current");
         bankAccount.setDepositMoney(200);
+        bankAccount.setDepositMoney(-200);
         System.out.println(bankAccount.toString());
     }
 
